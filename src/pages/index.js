@@ -16,9 +16,6 @@ const getFormattedDate = (milliseconds) => {
 const HomePage = ({ posts }) => (
   <div className={styles.HomePage}>
     <h1>Blog Posts</h1>
-    <p>apiKey: {process.env.NEXT_PUBLIC_FIREBASE_API_KEY}</p>
-    <p>databaseURL: {process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL}</p>
-    <p>projectId: {process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}</p>
     {posts.map((post) => (
       <article key={post.slug}>
         <img src={post.coverImage} alt={post.coverImageAlt} />
