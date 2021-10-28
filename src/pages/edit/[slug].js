@@ -60,41 +60,22 @@ const EditPage = ({ post }) => {
         <form onSubmit={handleSubmit}>
           <h1>Edit Post: {post.slug}</h1>
           <div>
-            <label htmlFor="title">Title</label>
-            <input
-              id="title"
-              type="text"
-              value={values.title}
-              onChange={handleChange}
-            />
+            <label htmlFor='title'>Title</label>
+            <input id='title' type='text' value={values.title} onChange={handleChange} />
           </div>
           <div>
-            <label htmlFor="coverImage">Cover Image URL</label>
-            <input
-              id="coverImage"
-              type="text"
-              value={values.coverImage}
-              onChange={handleChange}
-            />
+            <label htmlFor='coverImage'>Cover Image URL</label>
+            <input id='coverImage' type='text' value={values.coverImage} onChange={handleChange} />
           </div>
           <div>
-            <label htmlFor="coverImageAlt">Cover Image Alt</label>
-            <input
-              id="coverImageAlt"
-              type="text"
-              value={values.coverImageAlt}
-              onChange={handleChange}
-            />
+            <label htmlFor='coverImageAlt'>Cover Image Alt</label>
+            <input id='coverImageAlt' type='text' value={values.coverImageAlt} onChange={handleChange} />
           </div>
           <div>
-            <label htmlFor="content">Content</label>
-            <textarea
-              id="content"
-              value={values.content}
-              onChange={handleChange}
-            />
+            <label htmlFor='content'>Content</label>
+            <textarea id='content' value={values.content} onChange={handleChange} />
           </div>
-          <button type="submit" disabled={isLoading}>
+          <button type='submit' disabled={isLoading}>
             {isLoading ? 'Updating...' : 'Update'}
           </button>
         </form>

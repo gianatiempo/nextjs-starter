@@ -10,20 +10,14 @@ const HomePage = ({ posts }) => (
       <h1>Blog Posts</h1>
       {posts.map((post) => (
         <article key={post.slug}>
-          <Image
-            src={post.coverImage}
-            height="400"
-            width="700"
-            alt={post.coverImageAlt}
-          />
+          <Image src={post.coverImage} height='400' width='700' alt={post.coverImageAlt} />
           <div>
             <h2>{post.title}</h2>
             <span>{getFormattedDate(post.dateCreated)}</span>
             <p
               dangerouslySetInnerHTML={{
                 __html: `${post.content.substring(0, 200)}...`,
-              }}
-            ></p>
+              }}></p>
             <a href={`/post/${post.slug}`}>Continue Reading</a>
           </div>
         </article>

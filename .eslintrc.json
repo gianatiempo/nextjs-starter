@@ -3,17 +3,36 @@
   "plugins": ["eslint-plugin-import-helpers"],
   "rules": {
     "max-len": ["error", { "code": 120, "tabWidth": 2, "comments": 120 }],
+    "quotes": ["error", "single"],
     "import-helpers/order-imports": [
       "warn",
       {
         "newlinesBetween": "never",
-        "groups": [
-          ["/^react/"],
-          ["module"],
-          ["/^~//"],
-          ["parent", "sibling", "index"]
-        ],
+        "groups": [["/^react/"], ["module"], ["/^~//"], ["parent", "sibling", "index"]],
         "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "arrowParens": "always",
+        "bracketSameLine": true,
+        "bracketSpacing": true,
+        "embeddedLanguageFormatting": "auto",
+        "htmlWhitespaceSensitivity": "css",
+        "insertPragma": false,
+        "jsxSingleQuote": true,
+        "printWidth": 120,
+        "proseWrap": "preserve",
+        "quoteProps": "as-needed",
+        "requirePragma": false,
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "es5",
+        "useTabs": false,
+        "vueIndentScriptAndStyle": false,
+        "jsxBracketSameLine": true
       }
     ]
   }

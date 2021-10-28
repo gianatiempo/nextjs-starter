@@ -49,21 +49,11 @@ const SignInPage = () => {
     <div className={styles.SignIn}>
       <form onSubmit={handleSubmit}>
         <h1>Please Sign In</h1>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          value={values.email}
-          onChange={handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          value={values.password}
-          onChange={handleChange}
-        />
-        <button type="submit">Sign In</button>
+        <label htmlFor='email'>Email</label>
+        <input id='email' type='email' value={values.email} onChange={handleChange} />
+        <label htmlFor='password'>Password</label>
+        <input id='password' type='password' value={values.password} onChange={handleChange} />
+        <button type='submit'>Sign In</button>
       </form>
     </div>
   );

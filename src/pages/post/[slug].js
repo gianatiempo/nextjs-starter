@@ -22,31 +22,23 @@ const PostPage = ({ post }) => {
   return (
     <Layout>
       <div className={styles.PostPage}>
-        <Image
-          width="700"
-          height="400"
-          src={post.coverImage}
-          alt={post.coverImageAlt}
-        />
+        <Image width='700' height='400' src={post.coverImage} alt={post.coverImageAlt} />
         <h1>{post.title}</h1>
         {user && (
           <>
             <a href={`/edit/${post.slug}`}>
-              <Icon name="pencil-alt" />
+              <Icon name='pencil-alt' />
             </a>
             <button
               onClick={() => {
-                const shouldDeletePost = confirm(
-                  'Are you sure you want to delete this post?'
-                );
+                const shouldDeletePost = confirm('Are you sure you want to delete this post?');
                 if (shouldDeletePost) {
                   deletePost(post.slug).then(() => {
                     router.push('/');
                   });
                 }
-              }}
-            >
-              <Icon name="trash-alt" />
+              }}>
+              <Icon name='trash-alt' />
             </button>
           </>
         )}
