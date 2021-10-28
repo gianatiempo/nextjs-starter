@@ -1,13 +1,19 @@
-import { getPosts } from '@lib/firebase';
-import { getFormattedDate } from '@lib/utils';
-import styles from '@styles/index.module.scss';
+import Image from 'next/image';
+import { getPosts } from '../lib/firebase';
+import { getFormattedDate } from '../lib/utils';
+import styles from '../styles/index.module.scss';
 
 const HomePage = ({ posts }) => (
   <div className={styles.HomePage}>
     <h1>Blog Posts</h1>
     {posts.map((post) => (
       <article key={post.slug}>
-        <img src={post.coverImage} alt={post.coverImageAlt} />
+        <Image
+          src={post.coverImage}
+          height="400"
+          width="700"
+          alt={post.coverImageAlt}
+        />
         <div>
           <h2>{post.title}</h2>
           <span>{getFormattedDate(post.dateCreated)}</span>
