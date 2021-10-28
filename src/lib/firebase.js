@@ -1,7 +1,5 @@
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
-
-let app;
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_APIKEY,
@@ -13,22 +11,46 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
 };
 
-const initializeFirebase = () => {
-  if (getApps().length) {
-    app = getApp();
-  } else {
-    app = initializeApp(firebaseConfig);
+const initFirebase = async () => {
+  // This check prevents us from initializing more than one app.
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
   }
 };
 
 // Gets all posts from the database in reverse chronological order.
 export const getPosts = async () => {
-  initializeFirebase();
+  initFirebase();
 
-  const db = getFirestore();
-  const querySnapshot = await getDocs(collection(db, 'posts'));
-  const posts = [];
+  const posts = await firebase
+    .database()
+    .ref('/posts')
+    .orderByChild('dateCreated')
+    .once('value')
+    .then((snapshot) => {
+      const snapshotVal = snapshot.val();
 
-  querySnapshot.forEach((doc) => posts.push(doc.data()));
+      const result = [];
+      for (var slug in snapshotVal) {
+        const post = snapshotVal[slug];
+        result.push(post);
+      }
+
+      return result.reverse();
+    });
+
   return posts;
+};
+
+/*
+Creates a new post under /posts in the Realtime Database. Automatically
+generates the `dateCreated` property from the current UTC time in milliseconds.
+*/
+export const createPost = async (post) => {
+  initFirebase();
+
+  const dateCreated = new Date().getTime();
+  post.dateCreated = dateCreated;
+
+  return firebase.database().ref(`/posts/${post.slug}`).set(post);
 };

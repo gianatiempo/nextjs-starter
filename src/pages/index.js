@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { getPosts } from '../lib/firebase';
 import { getFormattedDate } from '../lib/utils';
-import styles from '../styles/index.module.scss';
+import styles from './index.module.scss';
 
 const HomePage = ({ posts }) => (
   <div className={styles.HomePage}>
