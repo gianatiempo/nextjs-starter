@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router'; // this is new
+import { useAuth } from '../../contexts/auth';
 import { createPost } from '../../lib/firebase'; // this is new
 import styles from './create.module.scss';
 
@@ -13,6 +14,8 @@ const CreatePage = () => {
     content: '',
   });
   const [isLoading, setIsLoading] = useState(false); // this is new
+  const [user, userLoading] = useAuth();
+  console.log(user, userLoading);
 
   /*
   This is the function we're passing to each control so we can capture
@@ -68,6 +71,15 @@ const CreatePage = () => {
         setIsLoading(false);
       });
   };
+
+  if (userLoading) {
+    return null;
+  }
+
+  if (!user && typeof window !== 'undefined') {
+    router.push('/404');
+    return null;
+  }
 
   return (
     <div className={styles.CreatePage}>

@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_APIKEY,
@@ -16,6 +17,35 @@ const initFirebase = async () => {
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
+};
+
+/*
+Attempts to authenticate a user with a given email and password.
+*/
+export const signIn = async (email, password) => {
+  initFirebase();
+
+  return firebase.auth().signInWithEmailAndPassword(email, password);
+};
+
+/*
+Signs out the authenticated user.
+*/
+export const signOut = async () => {
+  initFirebase();
+
+  return firebase.auth().signOut();
+};
+
+/*
+Observes changes in authentication. Receives a callback function that is invoked
+when auth state changes. See the Firebase Reference Docs for all of the details:
+https://firebase.google.com/docs/reference/js/firebase.auth.Auth#onauthstatechanged
+*/
+export const onAuthStateChanged = async (callback) => {
+  initFirebase();
+
+  return firebase.auth().onAuthStateChanged((user) => callback(user));
 };
 
 // Gets all posts from the database in reverse chronological order.
