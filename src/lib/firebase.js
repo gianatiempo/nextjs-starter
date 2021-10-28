@@ -97,3 +97,21 @@ export const getPostBySlug = async (slug) => {
     .once('value')
     .then((snapshot) => snapshot.val());
 };
+
+/*
+Updates the data for the given post in the database.
+*/
+export const updatePost = async (post) => {
+  initFirebase();
+
+  return firebase.database().ref(`/posts/${post.slug}`).set(post);
+};
+
+/*
+Deletes a post from the database.
+*/
+export const deletePost = async (slug) => {
+  initFirebase();
+
+  return firebase.database().ref(`/posts/${slug}`).set(null);
+};

@@ -14,9 +14,20 @@
     margin-bottom: 8px;
   }
 
-  a {
-    display: block;
-    padding: 8px;
-    color: black;
+  & > div {
+    display: flex;
+    margin: 0;
+
+    a {
+      padding: 8px;
+      color: black;
+    }
+
+    button {
+      background: transparent;
+      box-shadow: none;
+      border: none;
+      color: black;
+    }
   }
 }
